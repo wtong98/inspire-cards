@@ -13,6 +13,7 @@ const isDev = require('electron-is-dev');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const Menu = electron.Menu;
 let mainWindow;
 
 app.on('ready', createWindow);
@@ -24,7 +25,8 @@ app.on('activate', () => {
 });
 
 function createWindow() {
-    mainWindow = new BrowserWindow({width: 800, height: 600});
+    Menu.setApplicationMenu(null); // workaround to hide application menu
+    mainWindow = new BrowserWindow({width: 490, height: 350});
 
     const startURL = _getStartURL();
     mainWindow.loadURL(startURL);
